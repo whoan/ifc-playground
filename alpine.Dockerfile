@@ -1,6 +1,6 @@
 FROM alpine:3.18 AS ifc-build
 
-RUN apk add --no-cache cmake make msgsl g++
+RUN apk add --no-cache cmake make msgsl g++ musl-dbg
 RUN wget https://github.com/microsoft/ifc/archive/refs/heads/main.zip && unzip main.zip && rm main.zip
 WORKDIR /ifc-main/
 
