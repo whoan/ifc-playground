@@ -18,6 +18,7 @@ jobs:
 
   create-ifc-file:
     runs-on: windows-latest
+    needs: build-ifc-sdk-alpine
     steps:
     - uses: ilammy/msvc-dev-cmd@v1.12.1
     - uses: actions/checkout@v4
