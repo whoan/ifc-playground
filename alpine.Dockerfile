@@ -25,7 +25,7 @@ FROM alpine:$ALPINE_VERSION
 RUN apk add --no-cache libstdc++
 
 COPY --from=ifc-build /usr/local/bin/ifc-printer /usr/local/bin/ifc-printer
-# COPY --from=ifc-build /usr/local/include/ifc /usr/local/include/ifc
-# COPY --from=ifc-build /usr/local/lib/libifc-dom.a /usr/local/lib/libifc-dom.a
-# COPY --from=ifc-build /usr/local/lib/libifc-reader.a /usr/local/lib/libifc-reader.a
-# COPY --from=ifc-build /usr/local/lib/cmake/Microsoft.IFC /usr/local/lib/cmake/Microsoft.IFC
+COPY --from=ifc-build /usr/local/include/ifc /usr/local/include/ifc
+COPY --from=ifc-build /usr/local/lib/libifc-dom.a /usr/local/lib/libifc-dom.a
+COPY --from=ifc-build /usr/local/lib/libifc-reader.a /usr/local/lib/libifc-reader.a
+COPY --from=ifc-build /usr/local/lib/cmake/Microsoft.IFC /usr/local/lib/cmake/Microsoft.IFC
