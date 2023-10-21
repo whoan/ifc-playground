@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.18.4
+ARG ALPINE_VERSION=20230901
 FROM alpine:$ALPINE_VERSION AS ifc-build
 
 RUN apk add --no-cache cmake make msgsl g++ musl-dbg
