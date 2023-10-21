@@ -1,11 +1,12 @@
-ARG ALPINE_VERSION=20230901
+ARG ALPINE_VERSION=3.18.4
 FROM alpine:$ALPINE_VERSION AS ifc-build
 
 RUN apk add --no-cache cmake make msgsl g++ musl-dbg
 
 # version 0.43 does NOT contain proper files to build with cmake
 ARG IFC_VERSION=main
-RUN (wget https://github.com/microsoft/ifc/archive/refs/heads/$IFC_VERSION.zip || wget https://github.com/microsoft/ifc/archive/refs/tags/$IFC_VERSION.zip) \
+ARG ARCHIVE_URL=https://github.com/microsoft/ifc/archive/
+RUN (wget $ARCHIVE_URL/refs/heads/$IFC_VERSION.zip || wget $ARCHIVE_URL/refs/tags/$IFC_VERSION.zip || wget $ARCHIVE_URL/$IFC_VERSION.zip) \
     && unzip $IFC_VERSION.zip \
     && rm $IFC_VERSION.zip
 WORKDIR /ifc-$IFC_VERSION/
