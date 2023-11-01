@@ -5,7 +5,7 @@ RUN apk add --no-cache cmake make msgsl g++ musl-dbg
 
 # version 0.43 does NOT contain proper files to build with cmake
 ARG IFC_VERSION=main
-ARG ARCHIVE_URL=https://github.com/microsoft/ifc/archive/
+ARG ARCHIVE_URL=https://github.com/whoan/ifc/archive/
 RUN (wget $ARCHIVE_URL/refs/heads/$IFC_VERSION.zip || wget $ARCHIVE_URL/refs/tags/$IFC_VERSION.zip || wget $ARCHIVE_URL/$IFC_VERSION.zip) \
     && unzip $IFC_VERSION.zip \
     && rm $IFC_VERSION.zip

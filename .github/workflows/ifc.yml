@@ -14,7 +14,7 @@ jobs:
         registry: ghcr.io
         image_name: ifc
         image_tag: alpine-3.18
-        build_extra_args: "--build-arg=IFC_VERSION=d75c3a50800318d9a0c7e97b1dc1812650f1ceab"
+        build_extra_args: "--build-arg=IFC_VERSION=2b816f46291f8999b11495c5cade1c4160fb7872"
         dockerfile: alpine.Dockerfile
 
   create-ifc-file:
