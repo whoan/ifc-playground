@@ -14,8 +14,6 @@ WORKDIR /ifc-$IFC_VERSION/
 COPY CMakeUserPresets.json .
 
 RUN cmake --preset=dev  # configure
-# change DESTINATION to bin/ so we don't need to modify PATH var
-RUN sed -i 's/TARGETS ifc-printer DESTINATION . COMPONENT Printer/TARGETS ifc-printer DESTINATION bin COMPONENT Printer/' /ifc-$IFC_VERSION/cmake/install-rules.cmake
 RUN cmake --build --preset=dev  # build
 RUN ctest --preset=dev  # does it return != 0 if tests dont pass?
 RUN cmake --install build/dev --prefix /usr/local/
