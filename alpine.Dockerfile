@@ -5,7 +5,7 @@ RUN apk add --no-cache cmake make msgsl g++ musl-dbg
 
 # version 0.43 does NOT contain proper files to build with cmake
 ARG IFC_VERSION=main
-ARG ARCHIVE_URL=https://github.com/microsoft/ifc/archive/
+ARG ARCHIVE_URL=https://github.com/whoan/ifc/archive/
 RUN (wget $ARCHIVE_URL/refs/heads/$IFC_VERSION.zip || wget $ARCHIVE_URL/refs/tags/$IFC_VERSION.zip || wget $ARCHIVE_URL/$IFC_VERSION.zip) \
     && unzip $IFC_VERSION.zip \
     && rm $IFC_VERSION.zip
@@ -14,8 +14,6 @@ WORKDIR /ifc-$IFC_VERSION/
 COPY CMakeUserPresets.json .
 
 RUN cmake --preset=dev  # configure
-# change DESTINATION to bin/ so we don't need to modify PATH var
-RUN sed -i 's/TARGETS ifc-printer DESTINATION . COMPONENT Printer/TARGETS ifc-printer DESTINATION bin COMPONENT Printer/' /ifc-$IFC_VERSION/cmake/install-rules.cmake
 RUN cmake --build --preset=dev  # build
 RUN ctest --preset=dev  # does it return != 0 if tests dont pass?
 RUN cmake --install build/dev --prefix /usr/local/
